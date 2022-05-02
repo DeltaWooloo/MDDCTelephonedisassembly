@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using SonicRetro.SonLVL.API;
 
-namespace S1ObjectDefinitions.Common
+namespace S2ObjectDefinitions.Common
 {
 	class InvisibleBlock : ObjectDefinition
 	{
@@ -12,8 +11,9 @@ namespace S1ObjectDefinitions.Common
 
 		public override void Init(ObjectData data)
 		{
-			byte[] artfile = ObjectHelper.OpenArtFile("../artnem/Monitors.bin", CompressionType.Nemesis);
-			img = ObjectHelper.MapASMToBmp(artfile, "../_maps/Invisible Barriers.asm", 0, 0);
+			byte[] artfile = ObjectHelper.OpenArtFile("../art/nemesis/Monitor and contents.bin", CompressionType.Nemesis);
+			byte[] mapfile = System.IO.File.ReadAllBytes("../mappings/sprite/Obj_InvisibleBlock.bin");
+			img = ObjectHelper.MapToBmp(artfile, mapfile, 0, 0);
 		}
 
 		public override ReadOnlyCollection<byte> Subtypes
@@ -23,7 +23,7 @@ namespace S1ObjectDefinitions.Common
 
 		public override string Name
 		{
-			get { return "Invisible solid block"; }
+			get { return "Invisible Solid Block"; }
 		}
 
 		public override bool RememberState
